@@ -1,7 +1,10 @@
 ﻿using UnityEditor;
 using System.Collections;
 
-[CustomEditor(typeof(UIEffectPanel))]
-public class UIEffectPanelEditor : UIPanelInspector
+namespace orisox.com
 {
+    [CustomEditor(typeof(UIEffectPanel))]
+    public class UIEffectPanelEditor : UIPanelInspector
+    {
+    }
 }

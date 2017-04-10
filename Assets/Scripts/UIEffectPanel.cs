@@ -1,39 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UIEffectPanel : UIPanel
+namespace orisox.com
 {
-    int oldRenderQueue;
-
-    protected override void OnEnable()
+    public class UIEffectPanel : UIPanel
     {
-        renderQueue = RenderQueue.Automatic;
-        oldRenderQueue = startingRenderQueue;
-        UpdateRenderQueue();
-        base.OnEnable();
-    }
+        int oldRenderQueue;
 
-    [ContextMenu("UpdateRenderQueue")]
-    public void UpdateRenderQueue()
-    {
-        var Renderers = transform.GetComponentsInChildren<Renderer>();
-
-        if (null != Renderers)
+        protected override void OnEnable()
         {
-            for (int i = 0; i < Renderers.Length; ++i)
-            {
-                Renderers[i].sharedMaterial.renderQueue = this.startingRenderQueue;
-            }
-        }
-    }
-
-	protected override void OnUpdate()
-    {
-        if (oldRenderQueue != startingRenderQueue)
-        {
+            renderQueue = RenderQueue.Automatic;
             oldRenderQueue = startingRenderQueue;
             UpdateRenderQueue();
+            base.OnEnable();
         }
-        base.OnUpdate();
+
+        [ContextMenu("UpdateRenderQueue")]
+        public void UpdateRenderQueue()
+        {
+            var Renderers = transform.GetComponentsInChildren<Renderer>();
+
+            if (null != Renderers)
+            {
+                for (int i = 0; i < Renderers.Length; ++i)
+                {
+                    Renderers[i].sharedMaterial.renderQueue = this.startingRenderQueue;
+                }
+            }
+        }
+
+        protected override void OnUpdate()
+        {
+            if (oldRenderQueue != startingRenderQueue)
+            {
+                oldRenderQueue = startingRenderQueue;
+                UpdateRenderQueue();
+            }
+            base.OnUpdate();
+        }
     }
 }

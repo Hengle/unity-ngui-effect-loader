@@ -2,37 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
-public class DebugRenderQueue : MonoBehaviour
+namespace orisox.com
 {
-    public int renderQueue;
-
-    void OnEnable()
+    [ExecuteInEditMode]
+    public class DebugRenderQueue : MonoBehaviour
     {
-        UpdateRenderQueue();
-    }
+        public int renderQueue;
 
-    void Update()
-    {
-        UpdateRenderQueue();
-    }
-
-    void UpdateRenderQueue()
-    {
-        renderQueue = 0;
-        var rendererObj = GetComponent<Renderer>();
-        if (null != rendererObj)
+        void OnEnable()
         {
-            renderQueue = rendererObj.sharedMaterial.renderQueue;
+            UpdateRenderQueue();
         }
-        else
+
+        void Update()
         {
-            var panel = GetComponent<UIPanel>();
-            if (null != panel)
+            UpdateRenderQueue();
+        }
+
+        void UpdateRenderQueue()
+        {
+            renderQueue = 0;
+            var rendererObj = GetComponent<Renderer>();
+            if (null != rendererObj)
             {
-                if (0 < panel.drawCalls.Count)
+                renderQueue = rendererObj.sharedMaterial.renderQueue;
+            }
+            else
+            {
+                var panel = GetComponent<UIPanel>();
+                if (null != panel)
                 {
-                    renderQueue = panel.drawCalls[0].dynamicMaterial.renderQueue;
+                    if (0 < panel.drawCalls.Count)
+                    {
+                        renderQueue = panel.drawCalls[0].dynamicMaterial.renderQueue;
+                    }
                 }
             }
         }
