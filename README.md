@@ -2,6 +2,13 @@
 
 use particle effects or models as a ngui panel, sort by panel depth
 
+## features
+
+[watch demo here](https://orisox.com/2017/04/05/unity-use-effect-as-ngui-panel/ngui-effect-panel.mp4)
+<video width="480" height="360" autoplay loop controls>
+    <source src="https://orisox.com/2017/04/05/unity-use-effect-as-ngui-panel/ngui-effect-panel.mp4">
+</video>
+
 ## usage
 
 * attach UIEffectPanel.cs script to effects or models
